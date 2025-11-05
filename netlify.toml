@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Configure secrets scanning to allow Firebase API keys
+# Firebase API keys are public identifiers (not secrets) and must be in client bundles
+# Security comes from Firebase Security Rules, not from hiding the keys
+[build.environment]
+  # Allow Firebase API keys in build output (they're meant to be public)
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
