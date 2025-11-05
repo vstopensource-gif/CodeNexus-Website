@@ -1,5 +1,5 @@
 // Profile Page JavaScript
-import { doc, getDoc, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+import { doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 
 // Get auth and db from global (set by nav-auth.js)
 const auth = window.firebaseAuth;

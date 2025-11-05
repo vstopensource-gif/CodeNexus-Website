@@ -43,70 +43,80 @@ A lightweight, static website for the CodeNexus developer community with authent
 - ⚠️ Internet Explorer (not supported)
 
 ### Prerequisites
-- A modern web browser (Chrome, Firefox, Edge, or Safari)
-- A local web server for development (recommended)
-- A Firebase project for authentication and data storage
+- **Node.js**: v16 or higher (for npm)
+- **Browser**: Chrome, Firefox, Edge, or Safari.
+- **Firebase project**: Needed for live auth/data.
 
 ### Setup
-1. **Create a Firebase project:**
-   - Go to [Firebase Console](https://console.firebase.google.com)
-   - Create a new project or select an existing one
-   - Enable Authentication (Email/Password and Google providers)
-   - Create a Firestore database
-   - Configure Security Rules for your data
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-2. **Configure Firebase in the code:**
-   - Update the `firebaseConfig` object in `auth.js`, `nav-auth.js`, and `event-registration.js`
-   - Replace the placeholder values with your Firebase project credentials
-   - You can find these in Firebase Console → Project Settings → General → Your apps
+2. **Create Firebase project:**
+   - Go to `https://console.firebase.google.com`
+   - In Project Settings → General → "Your apps", create a Web app and copy the config
 
-**Note:** Firebase web API keys are public identifiers and are safe to include in client-side code. Security is enforced through Firebase Security Rules and Authentication.
+3. **Create `.env` file:**
+   Create a `.env` file in the root directory with your Firebase configuration:
+   ```env
+   VITE_FIREBASE_API_KEY=your_api_key_here
+   VITE_FIREBASE_AUTH_DOMAIN=your_project_id.firebaseapp.com
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_project_id.appspot.com
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+   ```
+
+   **Important:** The `.env` file is in `.gitignore` and will NOT be committed to Git.
 
 ### Running Locally
-You can open `index.html` directly, but a local server is better (for auth redirects and relative paths).
 
-- Using Python (3.x):
+**Development server (recommended):**
 ```bash
-python3 -m http.server 5500
-# then open http://localhost:5500
+npm run dev
 ```
+This starts Vite's dev server on `http://localhost:5500` with hot module replacement.
 
-- Using Node (serve):
+**Production build:**
 ```bash
-npx serve . -l 5500 --single
-# then open http://localhost:5500
+npm run build
+npm run preview
 ```
+This creates an optimized build in the `dist/` directory.
 
-- Using VS Code Live Server: Right-click `index.html` → "Open with Live Server".
-
-### Security Notes
-- Firebase web API keys are public identifiers and must be included in client-side code
-- Security is enforced through Firebase Security Rules and Authentication
-- Configure proper Firestore Security Rules to protect your data
-- Never expose Firebase Admin SDK keys or service account credentials
+### Environment Notes
+- Firebase configuration is loaded from environment variables via `firebase-config.js`
+- The `.env` file is never committed to Git (it's in `.gitignore`)
+- In production (Netlify), set the same `VITE_FIREBASE_*` variables in Netlify's environment variables
+- Client Firebase config is public (as required), but security comes from Firebase Security Rules and Auth
 
 ### Deployment
 
-**GitHub Pages:**
-1. Push your repository to GitHub
-2. Go to Repository Settings → Pages
-3. Select the branch and root folder
-4. Your site will be available at `https://yourusername.github.io/repository-name`
+**Netlify (recommended):**
+1. Set environment variables in Netlify:
+   - Go to Site settings → Environment variables
+   - Add all `VITE_FIREBASE_*` variables with their values (same as in your `.env` file)
+2. Build settings:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+3. Push to your connected Git repository - Netlify will build and deploy automatically
 
 **Firebase Hosting:**
-1. Install Firebase CLI: `npm i -g firebase-tools`
-2. Login: `firebase login`
-3. Initialize hosting: `firebase init hosting`
-4. Deploy: `firebase deploy`
+```bash
+npm run build
+npm i -g firebase-tools
+firebase login --no-localhost
+firebase init hosting
+# Set public directory to "dist"
+firebase deploy
+```
 
-**Netlify:**
-1. Connect your GitHub repository to Netlify
-2. Set build command: (leave empty for static site)
-3. Set publish directory: `/` (root)
-4. Deploy automatically on push
-
-**Other Static Hosting:**
-This is a static website and can be deployed to any static hosting service (Vercel, Cloudflare Pages, etc.).
+**GitHub Pages:**
+- Build the project: `npm run build`
+- Push the `dist/` folder contents to the `gh-pages` branch
+- Enable GitHub Pages in repository settings
 
 ### Customization
 - Update styling in `styles.css`.
@@ -139,24 +149,17 @@ Found a bug or have a suggestion? Please open an issue in this repository with:
 - Browser and OS information (if relevant)
 
 ### Troubleshooting
-
-**Authentication not working:**
-- Verify Firebase configuration in `auth.js`, `nav-auth.js`, and `event-registration.js`
-- Check that Authentication is enabled in Firebase Console
-- Ensure Google Sign-In provider is configured in Firebase Console
-
-**CORS or module errors:**
-- Always use a local web server (see "Running Locally" above)
-- Do not open HTML files directly in the browser (file:// protocol)
-
-**Firebase errors:**
-- Verify your Firebase project credentials are correct
-- Check that Firestore database is created and rules are configured
-- Ensure required Firebase services are enabled in the console
-
-**Data access issues:**
-- Review Firestore Security Rules in Firebase Console
-- Verify that users are properly authenticated before accessing data
+- **Missing environment variables error**: 
+  - Make sure you created the `.env` file with all required `VITE_FIREBASE_*` variables
+  - Restart the dev server after creating/updating `.env`
+- **Build fails in production**: 
+  - Ensure all `VITE_FIREBASE_*` variables are set in Netlify (or your hosting platform)
+- **Firebase errors**: 
+  - Re-check API key, project ID, and enabled auth providers in Firebase Console
+  - Verify environment variables are correctly set
+- **CORS or module errors**: 
+  - Use `npm run dev` (Vite dev server) instead of opening files directly
+  - For production, always use the built files from `dist/`
 
 ### License
 MIT (or your preferred license). If you need a specific license, add a `LICENSE` file.

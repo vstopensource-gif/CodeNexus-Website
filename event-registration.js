@@ -1,23 +1,15 @@
-// Firebase Configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyBj-vPEk306lnMLsVtTFMC9G5W3cJr3MwA",
-  authDomain: "codenexus-b58ae.firebaseapp.com",
-  projectId: "codenexus-b58ae",
-  storageBucket: "codenexus-b58ae.firebasestorage.app",
-  messagingSenderId: "454472605265",
-  appId: "1:454472605265:web:616082e4584842f1d5e270",
-  measurementId: "G-55M0FPM6JX"
-};
+// Firebase Configuration - Import from shared config
+import { firebaseConfig } from './firebase-config.js';
 
 // Initialize Firebase
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { initializeApp } from 'firebase/app';
 import { 
   getAuth, 
   GoogleAuthProvider, 
   signInWithPopup, 
   signOut,
   onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+} from 'firebase/auth';
 import { 
   getFirestore, 
   doc, 
@@ -27,7 +19,7 @@ import {
   query,
   where,
   getDocs
-} from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+} from 'firebase/firestore';
 
 // Initialize Firebase (or use existing instance from nav-auth.js)
 let app, auth, db;
