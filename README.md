@@ -1,13 +1,17 @@
 ## CodeNexus Website
 
-A lightweight, static website for the CodeNexus community with authentication, profile management, and event registrations (including a GSOC event page). Built with vanilla HTML/CSS/JS and Firebase for auth/storage.
+A lightweight, static website for the CodeNexus developer community with authentication, profile management, and event registrations. Built with vanilla HTML/CSS/JS and Firebase for authentication and data storage.
+
+> 🌐 **Live Demo:** [Visit the live site](#) *(codenexusvst.netlify.app)*  
+> 💬 **Join our community:** [WhatsApp Channel](https://whatsapp.com/channel/0029Vb6s2Jg4dTnTPNbgRE37) | [WhatsApp Community](https://chat.whatsapp.com/JUaHh3U8nKwGa8b8lDJUko) | [LinkedIn](https://www.linkedin.com/in/code-nexus-323b32396/) | [Instagram](https://www.instagram.com/code_nexus_official/)
 
 ### Features
-- **Authentication**: Login/Signup/Logout flows powered by Firebase (`auth.js`, `nav-auth.js`).
-- **User Profiles**: Basic profile view and updates (`profile.html`, `profile.js`).
-- **Events**: Events listing and registration (`events.html`, `event-registration.js`).
-- **GSOC Event**: Dedicated GSOC event page (`event-gsoc.html`, `GsocEvent.jpeg`).
-- **Responsive UI**: Global styles in `styles.css`.
+- 🔐 **Authentication**: Google Sign-In powered by Firebase Authentication
+- 👤 **User Profiles**: Profile management with phone number and college information
+- 📅 **Event Management**: Event listings and registration system
+- 🎯 **GSOC Events**: Dedicated pages for GSoC preparation and mentorship sessions
+- 📱 **Responsive Design**: Mobile-friendly UI that works on all devices
+- ⚡ **Lightweight**: Pure vanilla JavaScript, no heavy frameworks
 
 ### Project Structure
 ```
@@ -22,9 +26,21 @@ A lightweight, static website for the CodeNexus community with authentication, p
   ├─ nav-auth.js             # Navbar auth-state handling
   ├─ profile.js              # Profile page logic
   ├─ event-registration.js   # Event registration logic
-  ├─ firebase-config.example.js # Template for Firebase config
   └─ GsocEvent.jpeg          # Media asset
 ```
+
+### Technology Stack
+- **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+)
+- **Backend Services**: Firebase (Authentication, Firestore)
+- **Hosting**: Compatible with any static hosting service
+- **No Build Tools**: Pure static files, no bundlers required
+
+### Browser Support
+- ✅ Chrome (latest)
+- ✅ Firefox (latest)
+- ✅ Safari (latest)
+- ✅ Edge (latest)
+- ⚠️ Internet Explorer (not supported)
 
 ### Prerequisites
 - **Node.js**: v16 or higher (for npm)
@@ -109,9 +125,28 @@ firebase deploy
 - Add or modify event pages (`events.html`, `event-gsoc.html`) and logic (`event-registration.js`).
 
 ### Contributing
-- Fork and create a feature branch.
-- Keep edits focused and readable; match existing code style.
-- Test locally before opening a PR.
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork the repository** and create a feature branch
+2. **Make your changes** following the existing code style
+3. **Test locally** to ensure everything works
+4. **Submit a pull request** with a clear description of your changes
+
+**Guidelines:**
+- Keep code focused and readable
+- Match the existing code style and structure
+- Test all changes before submitting
+- Update documentation if needed
+- Be respectful and constructive in discussions
+
+### Reporting Issues
+
+Found a bug or have a suggestion? Please open an issue in this repository with:
+- A clear description of the problem
+- Steps to reproduce (if it's a bug)
+- Expected vs actual behavior
+- Browser and OS information (if relevant)
 
 ### Troubleshooting
 - **Missing environment variables error**: 
@@ -129,6 +164,14 @@ firebase deploy
 ### License
 MIT (or your preferred license). If you need a specific license, add a `LICENSE` file.
 
+### Community & Support
+
+- 💬 **WhatsApp Channel**: [Join for updates](https://whatsapp.com/channel/0029Vb6s2Jg4dTnTPNbgRE37)
+- 👥 **WhatsApp Community**: [Join the conversation](https://chat.whatsapp.com/JUaHh3U8nKwGa8b8lDJUko)
+- 💼 **LinkedIn**: [Connect with us](https://www.linkedin.com/in/code-nexus-323b32396/)
+- 📷 **Instagram**: [Follow us](https://www.instagram.com/code_nexus_official/)
+
 ### Acknowledgments
-- Firebase for authentication and hosting tooling.
-- CodeNexus community contributors.
+- Firebase for authentication and hosting tooling
+- CodeNexus community contributors and members
+- All open-source libraries and tools that made this project possible
